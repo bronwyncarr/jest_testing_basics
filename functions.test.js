@@ -1,8 +1,37 @@
 const { TestScheduler } = require("jest");
 const functions = require("./functions");
 
-// toBe Matches: toBe, toBeNull, toBeUnderfined, toBeDefined, toBeTruthy, toBeFalsy
+// Functions that will run before and after each test
+const initDatabase = () => console.log("db initialised");
+const closeDatabase = () => console.log("db closed");
 
+//Before and after each single test
+beforeEach(() => initDatabase());
+afterEach(() => closeDatabase());
+
+// Before and after all tests are done
+beforeAll(() => initDatabase());
+afterAll(() => closeDatabase());
+
+// Target certains test to run before or after with describe
+// These actions will only run for the tests within the describe block
+const petCheck = () => console.log('Checking the pet type....')
+
+describe("Checking Pet types", () => {
+  beforeEach(() => petCheck());
+
+  test('Pet is a dog', () => {
+    const petType = 'Dog'
+    expect(petType).toBe('Dog')
+  })
+
+  test('Pet is a cat', () => {
+    const petType = 'Cat'
+    expect(petType).toBe('Cat')
+  })
+});
+
+// toBe Matches: toBe, toBeNull, toBeUnderfined, toBeDefined, toBeTruthy, toBeFalsy
 // toBe
 test("Adds 2 + 2 to equal 4", () => {
   expect(functions.add(2, 2)).toBe(4);
@@ -68,7 +97,7 @@ test("User fetched name should be Leanne Graham", () => {
 // Async functon with async await keywords
 test("User fetched name should be Leanne Graham", async () => {
   expect.assertions(1); // Verifies 1 assertion is called
-  
-  const data = await functions.fetchUser()
-    expect(data.name).toEqual("Leanne Graham");
+
+  const data = await functions.fetchUser();
+  expect(data.name).toEqual("Leanne Graham");
 });
