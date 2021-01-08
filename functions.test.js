@@ -55,8 +55,7 @@ test("Admin should be in users", () => {
   expect(users).toContain("admin");
 });
 
-// Testing async data
-// Promise
+// Testing async data with Promises
 test("User fetched name should be Leanne Graham", () => {
   expect.assertions(1); // Verifies 1 assertion is called
   // return keyword otherwise the test will complete before the axios/fetch returns
@@ -65,12 +64,11 @@ test("User fetched name should be Leanne Graham", () => {
     .then((data) => expect(data.name).toEqual("Leanne Graham"));
 });
 
-// Testing async data
-// Async Await
-test("User fetched name should be Leanne Graham", () => {
+// Testing async data with Async Await
+// Async functon with async await keywords
+test("User fetched name should be Leanne Graham", async () => {
   expect.assertions(1); // Verifies 1 assertion is called
-  // return keyword otherwise the test will complete before the axios/fetch returns
-  return functions
-    .fetchUser()
-    .then((data) => expect(data.name).toEqual("Leanne Graham"));
+  
+  const data = await functions.fetchUser()
+    expect(data.name).toEqual("Leanne Graham");
 });
