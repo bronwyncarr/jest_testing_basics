@@ -1,4 +1,3 @@
-const { TestScheduler } = require("jest");
 const functions = require("./functions");
 
 // Functions that will run before and after each test
@@ -15,20 +14,20 @@ afterAll(() => closeDatabase());
 
 // Target certains test to run before or after with describe
 // These actions will only run for the tests within the describe block
-const petCheck = () => console.log('Checking the pet type....')
+const petCheck = () => console.log("Checking the pet type....");
 
 describe("Checking Pet types", () => {
   beforeEach(() => petCheck());
 
-  test('Pet is a dog', () => {
-    const petType = 'Dog'
-    expect(petType).toBe('Dog')
-  })
+  test("Pet is a dog", () => {
+    const petType = "Dog";
+    expect(petType).toBe("Dog");
+  });
 
-  test('Pet is a cat', () => {
-    const petType = 'Cat'
-    expect(petType).toBe('Cat')
-  })
+  test("Pet is a cat", () => {
+    const petType = "Cat";
+    expect(petType).toBe("Cat");
+  });
 });
 
 // toBe Matches: toBe, toBeNull, toBeUnderfined, toBeDefined, toBeTruthy, toBeFalsy
